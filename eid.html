@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Eid Greeting ✦ Eid Mubarak 1446</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #D4A843;
+    --gold-light: #F0C96A;
+    --gold-pale: #FBF3DC;
+    --deep: #1A0E2E;
+    --deep2: #2D1854;
+    --teal: #1D7D6B;
+    --teal-light: #2BA898;
+    --rose: #C04A6B;
+    --cream: #FDF8EE;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    font-family: 'Cormorant Garamond', serif;
+    background: var(--deep);
+    color: var(--cream);
+  }
+
+  /* ── BACKGROUND LAYERS ── */
+  .stars {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 0;
+  }
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gold-light);
+    animation: twinkle var(--dur, 3s) var(--delay, 0s) infinite;
+  }
+  @keyframes twinkle {
+    0%,100%{opacity:.12;transform:scale(1)}
+    50%{opacity:1;transform:scale(1.6)}
+  }
+
+  .particle {
+    position: fixed;
+    pointer-events: none; z-index: 0;
+    animation: floatUp var(--d,8s) var(--dl,0s) infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+    10%{opacity:.6}
+    90%{opacity:.25}
+    100%{transform:translateY(-10vh) rotate(360deg);opacity:0}
+  }
+
+  .geo-bg {
+    position: fixed; inset: 0;
+    opacity: .028;
+    background-image: repeating-conic-gradient(rgba(212,168,67,1) 0deg, rgba(212,168,67,0) 30deg);
+    background-size: 60px 60px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed; top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal-light), var(--gold));
+    transition: width .6s ease;
+    z-index: 200;
+  }
+
+  /* ── NAV DOTS ── */
+  .nav-dots {
+    position: fixed; right: 18px; top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    flex-direction: column; gap: 10px; z-index: 100;
+  }
+  .nav-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(212,168,67,.25);
+    cursor: pointer; transition: all .3s;
+  }
+  .nav-dot.active{background:var(--gold);transform:scale(1.4)}
+  .nav-dot:hover{background:var(--gold-light)}
+
+  /* ── PAGES ── */
+  .page {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .7s ease, transform .7s ease;
+    transform: translateY(40px);
+    overflow: hidden; z-index: 5;
+  }
+  .page.active{opacity:1;pointer-events:all;transform:translateY(0)}
+  .page.exit-up{opacity:0;transform:translateY(-60px)}
+  .page.exit-down{opacity:0;transform:translateY(60px)}
+
+  /* ── SCROLL HINT ── */
+  .scroll-hint {
+    position: fixed; bottom: 20px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cinzel',serif; font-size: 10px;
+    letter-spacing: 2px; color: rgba(253,248,238,.28);
+    animation: bounce 2s ease-in-out infinite;
+    pointer-events: none; z-index: 100; display: none;
+  }
+  @keyframes bounce {
+    0%,100%{transform:translateX(-50%) translateY(0);opacity:.28}
+    50%{transform:translateX(-50%) translateY(-6px);opacity:.6}
+  }
+
+  /* ── SHARED COMPONENTS ── */
+  .gold-divider{display:flex;align-items:center;gap:12px;margin:10px 0}
+  .gold-divider .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);max-width:90px}
+  .gold-divider span{color:var(--gold);font-size:16px}
+
+  .section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;color:var(--teal-light);text-transform:uppercase;margin-bottom:8px}
+  .btn-next{
+    margin-top:18px;padding:12px 32px;
+    font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;
+    background:transparent;border:1.5px solid rgba(212,168,67,.5);
+    border-radius:30px;color:var(--gold);cursor:pointer;transition:all .3s;
+  }
+  .btn-next:hover{background:rgba(212,168,67,.12);border-color:var(--gold);transform:translateY(-2px)}
+
+  /* ── PAGE 0 : NAME INPUT ── */
+  #page-0{background:radial-gradient(ellipse at 50% 30%,var(--deep2) 0%,var(--deep) 70%)}
+  .crescent-icon{
+    font-size:64px;display:block;text-align:center;margin-bottom:12px;
+    animation:moonGlow 3s ease-in-out infinite;
+  }
+  @keyframes moonGlow{
+    0%,100%{text-shadow:0 0 10px rgba(212,168,67,.3);transform:scale(1)}
+    50%{text-shadow:0 0 30px rgba(212,168,67,.8),0 0 60px rgba(212,168,67,.4);transform:scale(1.08)}
+  }
+  .page-title{font-family:'Cinzel',serif;font-size:clamp(13px,2.5vw,17px);letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;animation:fadeIn 1.2s .3s both}
+  .page-headline{font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,44px);color:var(--cream);text-align:center;line-height:1.2;margin-bottom:8px;animation:fadeIn 1.2s .5s both}
+  .page-sub{font-size:clamp(14px,2.5vw,18px);color:rgba(253,248,238,.55);text-align:center;font-style:italic;margin-bottom:28px;animation:fadeIn 1.2s .7s both}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+  .name-form{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:360px;animation:fadeIn 1.2s .9s both;position:relative;z-index:5}
+  .name-input{
+    width:100%;padding:14px 20px;
+    font-family:'Playfair Display',serif;font-size:18px;
+    background:rgba(253,248,238,.08);
+    border:1.5px solid rgba(212,168,67,.4);
+    border-radius:40px;color:var(--cream);
+    outline:none;text-align:center;
+    transition:border-color .3s,background .3s,box-shadow .3s;
+  }
+  .name-input::placeholder{color:rgba(253,248,238,.3);font-style:italic}
+  .name-input:focus{border-color:var(--gold);background:rgba(253,248,238,.12);box-shadow:0 0 0 4px rgba(212,168,67,.12)}
+  .btn-primary{
+    padding:14px 42px;font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;
+    background:linear-gradient(135deg,var(--gold) 0%,#B8863A 100%);
+    border:none;border-radius:40px;color:var(--deep);cursor:pointer;
+    transition:transform .2s,box-shadow .3s;
+    box-shadow:0 4px 20px rgba(212,168,67,.3);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(212,168,67,.5)}
+  .btn-primary:active{transform:scale(.97)}
+
+  /* ── PAGE 1 : GREETING CARD ── */
+  #page-1{background:radial-gradient(ellipse at 50% 20%,#2B1060 0%,var(--deep) 65%)}
+  .greeting-card{
+    background:rgba(253,248,238,.05);
+    border:1px solid rgba(212,168,67,.22);
+    border-radius:24px;padding:34px 28px;
+    max-width:520px;width:100%;text-align:center;
+    position:relative;backdrop-filter:blur(10px);
+    animation:cardReveal .8s ease forwards;overflow:hidden;
+  }
+  @keyframes cardReveal{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  .big-name{
+    font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,46px);font-style:italic;
+    color:var(--gold-light);margin:8px 0 4px;
+    text-shadow:0 0 30px rgba(212,168,67,.5);
+    animation:nameGlow 3s ease-in-out infinite;
+  }
+  @keyframes nameGlow{0%,100%{text-shadow:0 0 20px rgba(212,168,67,.3)}50%{text-shadow:0 0 50px rgba(212,168,67,.7),0 0 80px rgba(212,168,67,.3)}}
+  .eid-mubarak-text{font-family:'Cinzel',serif;font-size:clamp(22px,5vw,36px);letter-spacing:3px;color:var(--cream);margin:10px 0}
+  .arabic-text{font-size:clamp(20px,4vw,28px);color:var(--gold);direction:rtl;margin:6px 0 12px;letter-spacing:2px}
+  .greeting-body{font-size:clamp(14px,2.5vw,17px);line-height:1.85;color:rgba(253,248,238,.75);margin:14px 0;font-style:italic}
+  .name-inline{color:var(--gold-light);font-style:normal;font-weight:600}
+
+  /* ornament corners */
+  .orn{position:absolute;width:55px;height:55px;opacity:.18;pointer-events:none}
+  .orn.tl{top:8px;left:8px}
+  .orn.tr{top:8px;right:8px;transform:scaleX(-1)}
+  .orn.bl{bottom:8px;left:8px;transform:scaleY(-1)}
+  .orn.br{bottom:8px;right:8px;transform:scale(-1)}
+
+  /* ── PAGE 2 : BLESSINGS ── */
+  #page-2{background:radial-gradient(ellipse at 30% 50%,#0A3B2E 0%,var(--deep) 70%)}
+  .blessings-container{max-width:560px;width:100%;text-align:center}
+  .section-headline{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,34px);margin-bottom:16px;color:var(--cream)}
+  .dua-box{
+    background:rgba(212,168,67,.06);border:1px solid rgba(212,168,67,.14);
+    border-radius:16px;padding:16px 18px;margin:4px 0 14px;
+    font-style:italic;color:rgba(253,248,238,.7);font-size:clamp(13px,2vw,15px);line-height:1.75;
+  }
+  .blessing-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 16px}
+  .blessing-item{
+    background:rgba(29,125,107,.12);border:1px solid rgba(43,168,152,.2);
+    border-radius:16px;padding:16px 12px;
+    transition:transform .3s,border-color .3s;cursor:default;
+  }
+  .blessing-item:hover{transform:translateY(-3px);border-color:rgba(43,168,152,.5);background:rgba(29,125,107,.22)}
+  .blessing-icon{font-size:26px;margin-bottom:7px;display:block}
+  .blessing-title{font-family:'Cinzel',serif;font-size:12px;color:var(--teal-light);letter-spacing:1px;margin-bottom:4px}
+  .blessing-desc{font-size:12px;color:rgba(253,248,238,.5);line-height:1.5}
+
+  /* ── PAGE 3 : POEM ── */
+  #page-3{background:radial-gradient(ellipse at 70% 40%,#3B1020 0%,var(--deep) 70%)}
+  .memory-container{max-width:540px;width:100%;text-align:center}
+  .lantern-row{display:flex;justify-content:center;gap:16px;margin-bottom:18px}
+  .lantern{
+    font-size:36px;display:inline-block;
+    animation:sway var(--sw,3s) ease-in-out infinite;
+    transform-origin:top center;
+  }
+  @keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+  .poem-block{
+    background:rgba(192,74,107,.08);border:1px solid rgba(192,74,107,.2);
+    border-radius:20px;padding:24px 20px;margin:14px 0;
+  }
+  .poem-quote{font-family:'Playfair Display',serif;font-size:clamp(15px,3vw,19px);font-style:italic;color:var(--cream);line-height:1.85}
+  .poem-attr{font-size:12px;color:rgba(253,248,238,.38);margin-top:10px;letter-spacing:2px;font-family:'Cinzel',serif}
+  .heart-burst{font-size:24px;animation:pulse 2s ease-in-out infinite;display:inline-block;margin:0 4px}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+
+  /* ── PAGE 4 : FINAL ── */
+  #page-4{background:radial-gradient(ellipse at 50% 50%,#1A3060 0%,var(--deep) 70%)}
+  .final-container{max-width:500px;width:100%;text-align:center}
+  .big-moon{
+    font-size:86px;display:block;margin:0 auto 14px;
+    animation:moonFloat 4s ease-in-out infinite;
+    filter:drop-shadow(0 0 22px rgba(212,168,67,.45));
+  }
+  @keyframes moonFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(5deg)}}
+  .final-greeting{font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,44px);color:var(--gold-light);margin-bottom:8px}
+  .final-sub{font-size:clamp(14px,2.5vw,17px);color:rgba(253,248,238,.65);font-style:italic;line-height:1.85;margin:10px 0 20px}
+  .share-strip{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .share-btn{
+    padding:10px 22px;border-radius:25px;
+    border:1px solid rgba(212,168,67,.35);background:transparent;
+    color:rgba(253,248,238,.7);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;
+    cursor:pointer;transition:all .3s;
+  }
+  .share-btn:hover{background:rgba(212,168,67,.12);color:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
+  .restart-btn{
+    margin:14px auto 0;padding:10px 28px;border-radius:25px;
+    border:1px solid rgba(43,168,152,.4);background:transparent;
+    color:var(--teal-light);font-family:'Cinzel',serif;font-size:11px;letter-spacing:1.5px;
+    cursor:pointer;transition:all .3s;display:block;
+  }
+  .restart-btn:hover{background:rgba(43,168,152,.12);border-color:var(--teal-light)}
+
+  /* ── RESPONSIVE ── */
+  @media(max-height:640px){
+    .greeting-card{padding:16px 14px}
+    .blessing-cards{gap:8px}
+    .blessing-item{padding:10px 8px}
+    .crescent-icon{font-size:42px;margin-bottom:6px}
+    .big-moon{font-size:60px}
+    .poem-block{padding:16px 12px}
+  }
+  @media(max-width:420px){
+    .greeting-card{padding:22px 16px}
+    .blessing-cards{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- BG layers -->
+<div class="geo-bg"></div>
+<div class="stars" id="stars"></div>
+<div id="particles"></div>
+
+<!-- Progress -->
+<div class="progress-bar" id="progressBar" style="width:0%"></div>
+
+<!-- Nav dots (pages 1-4) -->
+<div class="nav-dots" id="navDots">
+  <div class="nav-dot active" data-p="1" onclick="goTo(1)" title="Greeting"></div>
+  <div class="nav-dot" data-p="2" onclick="goTo(2)" title="Blessings"></div>
+  <div class="nav-dot" data-p="3" onclick="goTo(3)" title="Poem"></div>
+  <div class="nav-dot" data-p="4" onclick="goTo(4)" title="Final"></div>
+</div>
+
+<!-- Scroll hint -->
+<div class="scroll-hint" id="scrollHint">↑ ↓ arrow keys or swipe to navigate</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 0 — NAME INPUT
+════════════════════════════════════════════════ -->
+<div class="page active" id="page-0">
+  <span class="crescent-icon">☪</span>
+  <p class="page-title">Eid Al-Fitr ✦ 1446</p>
+  <h1 class="page-headline">Generate a Custom<br>Eid Greeting</h1>
+  <p class="page-sub">for someone truly special</p>
+  <div class="gold-divider"><div class="line"></div><span>✦</span><div class="line"></div></div>
+  <div class="name-form">
+    <input class="name-input" id="nameInput" type="text" placeholder="Enter their name…" maxlength="30" autocomplete="off" />
+    <button class="btn-primary" onclick="startJourney()">Begin the Greeting ✦</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 1 — GREETING CARD
+════════════════════════════════════════════════ -->
+<div class="page" id="page-1">
+  <!-- Corner ornaments -->
+  <svg class="orn tl" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 2 L42 2 M2 2 L2 42 M10 2 C10 22 22 32 42 32 M2 10 C22 10 32 22 32 42" stroke="#D4A843" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="4" stroke="#D4A843" stroke-width="1"/>
+  </svg>
+  <svg class="orn tr" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 2 L42 2 M2 2 L2 42 M10 2 C10 22 22 32 42 32 M2 10 C22 10 32 22 32 42" stroke="#D4A843" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="4" stroke="#D4A843" stroke-width="1"/>
+  </svg>
+  <svg class="orn bl" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 2 L42 2 M2 2 L2 42 M10 2 C10 22 22 32 42 32 M2 10 C22 10 32 22 32 42" stroke="#D4A843" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="4" stroke="#D4A843" stroke-width="1"/>
+  </svg>
+  <svg class="orn br" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 2 L42 2 M2 2 L2 42 M10 2 C10 22 22 32 42 32 M2 10 C22 10 32 22 32 42" stroke="#D4A843" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="4" stroke="#D4A843" stroke-width="1"/>
+  </svg>
+
+  <div class="greeting-card" style="position:relative;z-index:5">
+    <p class="section-label">✦ A Special Greeting For ✦</p>
+    <div class="big-name" id="n1">—</div>
+    <div class="gold-divider"><div class="line"></div><span>☪</span><div class="line"></div></div>
+    <div class="eid-mubarak-text">Eid Mubarak</div>
+    <div class="arabic-text">عيد مبارك سعيد</div>
+    <p class="greeting-body">
+      Dearest <span class="name-inline" id="n1b">friend</span>, may this blessed Eid fill your heart with joy beyond measure. May the light of this sacred day illuminate every corner of your world, and may Allah shower you with His infinite mercy and grace.
+    </p>
+    <div class="gold-divider"><div class="line"></div><span>✦</span><div class="line"></div></div>
+    <p style="font-size:13px;color:rgba(253,248,238,.38);font-style:italic;margin-top:10px">Taqabbal Allahu minna wa minkum</p>
+    <button class="btn-next" onclick="goTo(2)">Blessings for <span id="n1c">you</span> →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 2 — BLESSINGS
+════════════════════════════════════════════════ -->
+<div class="page" id="page-2">
+  <div class="blessings-container">
+    <p class="section-label">✦ Specially Crafted for <span id="n2a">you</span> ✦</p>
+    <h2 class="section-headline">May Allah Bless <span style="color:var(--gold-light)" id="n2b">you</span></h2>
+    <div class="dua-box">
+      "O Allah, bless <span id="n2c" style="color:var(--gold-light);font-style:normal">this soul</span> with health, happiness, and the wealth of Imaan. Grant them what their heart desires, and protect them in every step."
+    </div>
+    <div class="blessing-cards">
+      <div class="blessing-item">
+        <span class="blessing-icon">🌙</span>
+        <div class="blessing-title">Peace</div>
+        <div class="blessing-desc">Inner peace that surpasses all understanding</div>
+      </div>
+      <div class="blessing-item">
+        <span class="blessing-icon">⭐</span>
+        <div class="blessing-title">Prosperity</div>
+        <div class="blessing-desc">Abundance in all that is good and halal</div>
+      </div>
+      <div class="blessing-item">
+        <span class="blessing-icon">🌹</span>
+        <div class="blessing-title">Love</div>
+        <div class="blessing-desc">Surrounded by those who truly cherish them</div>
+      </div>
+      <div class="blessing-item">
+        <span class="blessing-icon">✨</span>
+        <div class="blessing-title">Barakah</div>
+        <div class="blessing-desc">Divine blessings in every endeavour</div>
+      </div>
+    </div>
+    <button class="btn-next" onclick="goTo(3)">A poem for <span id="n2d">you</span> →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 3 — POEM
+════════════════════════════════════════════════ -->
+<div class="page" id="page-3">
+  <div class="memory-container">
+    <div class="lantern-row">
+      <span class="lantern" style="--sw:2.8s">🏮</span>
+      <span class="lantern" style="--sw:3.5s;animation-delay:-1s">🪔</span>
+      <span class="lantern" style="--sw:2.4s;animation-delay:-.5s">🏮</span>
+    </div>
+    <p class="section-label">✦ Written in the Stars for <span id="n3a">you</span> ✦</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,32px);color:var(--rose);margin-bottom:14px">A Poem of Eid</h2>
+    <div class="poem-block">
+      <p class="poem-quote">
+        <span id="n3b">Dear friend</span>, on this joyous day,<br>
+        May the crescent moon light your way.<br>
+        Through feasts and prayer and family near,<br>
+        May Eid bring you all you hold dear.<br><br>
+        The fragrance of attar fills the air,<br>
+        And in every heart a gentle prayer—<br>
+        That <span id="n3c" style="color:var(--rose)">you</span> shall know, this blessed dawn,<br>
+        How much you're loved, how you belong.
+      </p>
+      <p class="poem-attr">— With love &amp; prayers ✦ Eid 1446</p>
+    </div>
+    <p style="font-size:15px;margin-top:8px">
+      <span class="heart-burst">❤️</span>
+      <span style="color:rgba(253,248,238,.6);font-style:italic;font-size:14px">May every moment of Eid bring <span id="n3d" style="color:var(--rose)">you</span> pure joy</span>
+      <span class="heart-burst" style="animation-delay:-1s">❤️</span>
+    </p>
+    <button class="btn-next" onclick="goTo(4)">Final wishes for <span id="n3e">you</span> →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAGE 4 — FINAL
+════════════════════════════════════════════════ -->
+<div class="page" id="page-4">
+  <div class="final-container">
+    <span class="big-moon">🌙</span>
+    <div class="section-label">✦ With Love &amp; Prayers ✦</div>
+    <div class="final-greeting" id="n4a">Eid Mubarak!</div>
+    <div class="gold-divider" style="justify-content:center;margin:10px 0">
+      <div class="line" style="max-width:120px"></div><span style="color:var(--gold)">☪</span><div class="line" style="max-width:120px"></div>
+    </div>
+    <p class="final-sub">
+      <span id="n4b" style="color:var(--gold-light)">Dear one</span>, your laughter is a gift to this world. May this Eid mark the beginning of your most beautiful chapter yet — filled with barakat, love, and endless joy.<br><br>
+      <em style="font-size:13px;color:rgba(253,248,238,.38)">Kullu aam wa antum bikhair</em>
+    </p>
+    <!-- <div class="share-strip">
+      <button class="share-btn" onclick="copyGreeting(this)">📋 Copy Greeting</button>
+      <button class="share-btn" onclick="sendSMS()">💌 Send via SMS</button>
+      <button class="share-btn" onclick="printPage()">🖨️ Print / Save</button>
+    </div> -->
+    <button class="restart-btn" onclick="restart()">✦ Create Another Greeting</button>
+  </div>
+</div>
+
+<script>
+  // ── STATE ──
+  let cur = 0;
+  let name = '';
+  const TOTAL = 5;
+
+  // ── STARS ──
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 100; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const sz = 1 + Math.random() * 2;
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;--dur:${2+Math.random()*4}s;--delay:${Math.random()*6}s`;
+    starsEl.appendChild(s);
+  }
+
+  // ── PARTICLES ──
+  const syms = ['✦','☪','✨','🌙','⭐','🌹','🕌'];
+  const pEl = document.getElementById('particles');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = syms[Math.floor(Math.random()*syms.length)];
+    p.style.cssText = `left:${Math.random()*100}%;font-size:${12+Math.random()*14}px;--d:${7+Math.random()*8}s;--dl:${Math.random()*9}s`;
+    pEl.appendChild(p);
+  }
+
+  // ── NAME SPREAD ──
+  function setName(n) {
+    name = n || 'Dear One';
+    [
+      ['n1',    name],
+      ['n1b',   name],
+      ['n1c',   name],
+      ['n2a',   name],
+      ['n2b',   name],
+      ['n2c',   name],
+      ['n2d',   name],
+      ['n3a',   name],
+      ['n3b',   name],
+      ['n3c',   name],
+      ['n3d',   name],
+      ['n3e',   name],
+      ['n4a',   'Eid Mubarak, ' + name + '!'],
+      ['n4b',   name],
+    ].forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    });
+  }
+
+  // ── JOURNEY START ──
+  function startJourney() {
+    const val = document.getElementById('nameInput').value.trim();
+    if (!val) {
+      const inp = document.getElementById('nameInput');
+      inp.style.borderColor = 'rgba(192,74,107,.8)';
+      inp.focus();
+      setTimeout(() => inp.style.borderColor = 'rgba(212,168,67,.4)', 1600);
+      return;
+    }
+    setName(val);
+    goTo(1);
+    document.getElementById('navDots').style.display = 'flex';
+    document.getElementById('scrollHint').style.display = 'block';
+  }
+
+  // ── PAGE TRANSITION ──
+  function goTo(n) {
+    if (cur === n) return;
+    const oldEl = document.getElementById('page-' + cur);
+    const newEl = document.getElementById('page-' + n);
+    const dir = n > cur ? 'exit-up' : 'exit-down';
+    oldEl.classList.add(dir);
+    setTimeout(() => oldEl.classList.remove('active', dir), 700);
+    newEl.classList.add('active');
+    cur = n;
+
+    // Progress bar
+    const pct = cur === 0 ? 0 : Math.round((cur / (TOTAL - 1)) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+
+    // Nav dots
+    document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+    const dot = document.querySelector(`.nav-dot[data-p="${n}"]`);
+    if (dot) dot.classList.add('active');
+
+    // Hide nav on page 0
+    document.getElementById('navDots').style.display = (n === 0) ? 'none' : 'flex';
+    document.getElementById('scrollHint').style.display = (n === 0) ? 'none' : 'block';
+  }
+
+  // ── RESTART ──
+  function restart() {
+    goTo(0);
+    document.getElementById('nameInput').value = '';
+    document.getElementById('nameInput').focus();
+  }
+
+  // ── KEYBOARD ──
+  document.addEventListener('keydown', e => {
+    if (cur === 0) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { if (cur < TOTAL - 1) goTo(cur + 1); }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { if (cur > 1) goTo(cur - 1); }
+  });
+  document.getElementById('nameInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') startJourney();
+  });
+
+  // ── TOUCH SWIPE ──
+  let ty0 = 0;
+  document.addEventListener('touchstart', e => { ty0 = e.touches[0].clientY; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    if (cur === 0) return;
+    const diff = ty0 - e.changedTouches[0].clientY;
+    if (Math.abs(diff) < 50) return;
+    if (diff > 0 && cur < TOTAL - 1) goTo(cur + 1);
+    else if (diff < 0 && cur > 1) goTo(cur - 1);
+  }, {passive:true});
+
+  // ── ACTIONS ──
+  function copyGreeting(btn) {
+    const txt = `Eid Mubarak, ${name}! 🌙\n\nMay this blessed Eid fill your heart with joy and your home with love. May Allah shower you with infinite mercy, peace, and barakah.\n\nTaqabbal Allahu minna wa minkum ✨`;
+    navigator.clipboard.writeText(txt).then(() => {
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => btn.textContent = '📋 Copy Greeting', 2500);
+    });
+  }
+
+  function sendSMS() {
+    const txt = encodeURIComponent(`Eid Mubarak, ${name}! 🌙 May this blessed Eid fill your heart with joy and your home with love. Taqabbal Allahu minna wa minkum ✨`);
+    window.open('sms:?body=' + txt, '_blank');
+  }
+
+  function printPage() {
+    window.print();
+  }
+</script>
+</body>
+</html>
