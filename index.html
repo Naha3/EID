@@ -63,8 +63,7 @@
     transition: width .6s ease; z-index: 200;
   }
 
-  /* NAV DOTS REMOVED */
-
+  /* ── PAGES ── */
   .page {
     position: fixed; inset: 0;
     display: flex; flex-direction: column;
@@ -75,35 +74,30 @@
     transform: translateY(40px);
     overflow: hidden; z-index: 5;
   }
-  .page.active{opacity:1;pointer-events:all;transform:translateY(0)}
-  .page.exit-up{opacity:0;transform:translateY(-60px)}
-  .page.exit-down{opacity:0;transform:translateY(60px)}
+  .page.active { opacity:1; pointer-events:all; transform:translateY(0) }
+  .page.exit-up { opacity:0; transform:translateY(-60px) }
+  .page.exit-down { opacity:0; transform:translateY(60px) }
 
-  /* SCROLL HINT REMOVED */
-
+  /* ── SHARED ── */
   .gold-divider{display:flex;align-items:center;gap:12px;margin:10px 0}
   .gold-divider .line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);max-width:90px}
   .gold-divider span{color:var(--gold);font-size:16px}
 
   .section-label{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;color:var(--teal-light);text-transform:uppercase;margin-bottom:8px}
+
   .btn-next{
-    margin-top:18px;padding:12px 32px;
-    font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;
-    background:transparent;border:1.5px solid rgba(212,168,67,.5);
-    border-radius:30px;color:var(--gold);cursor:pointer;transition:all .3s;
+    margin-top:16px; padding:12px 32px;
+    font-family:'Cinzel',serif; font-size:12px; letter-spacing:2px; text-transform:uppercase;
+    background:transparent; border:1.5px solid rgba(212,168,67,.5);
+    border-radius:30px; color:var(--gold); cursor:pointer; transition:all .3s;
+    flex-shrink:0; display:inline-block;
   }
   .btn-next:hover{background:rgba(212,168,67,.12);border-color:var(--gold);transform:translateY(-2px)}
 
-  /* PAGE 0 */
+  /* ── PAGE 0 ── */
   #page-0{background:radial-gradient(ellipse at 50% 30%,var(--deep2) 0%,var(--deep) 70%)}
-  .crescent-icon{
-    font-size:64px;display:block;text-align:center;margin-bottom:12px;
-    animation:moonGlow 3s ease-in-out infinite;
-  }
-  @keyframes moonGlow{
-    0%,100%{text-shadow:0 0 10px rgba(212,168,67,.3);transform:scale(1)}
-    50%{text-shadow:0 0 30px rgba(212,168,67,.8),0 0 60px rgba(212,168,67,.4);transform:scale(1.08)}
-  }
+  .crescent-icon{font-size:64px;display:block;text-align:center;margin-bottom:12px;animation:moonGlow 3s ease-in-out infinite;}
+  @keyframes moonGlow{0%,100%{text-shadow:0 0 10px rgba(212,168,67,.3);transform:scale(1)}50%{text-shadow:0 0 30px rgba(212,168,67,.8),0 0 60px rgba(212,168,67,.4);transform:scale(1.08)}}
   .page-title{font-family:'Cinzel',serif;font-size:clamp(13px,2.5vw,17px);letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;animation:fadeIn 1.2s .3s both}
   .page-headline{font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,44px);color:var(--cream);text-align:center;line-height:1.2;margin-bottom:8px;animation:fadeIn 1.2s .5s both}
   .page-sub{font-size:clamp(14px,2.5vw,18px);color:rgba(253,248,238,.55);text-align:center;font-style:italic;margin-bottom:28px;animation:fadeIn 1.2s .7s both}
@@ -111,12 +105,9 @@
 
   .name-form{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:360px;animation:fadeIn 1.2s .9s both;position:relative;z-index:5}
   .name-input{
-    width:100%;padding:14px 20px;
-    font-family:'Playfair Display',serif;font-size:18px;
-    background:rgba(253,248,238,.08);
-    border:1.5px solid rgba(212,168,67,.4);
-    border-radius:40px;color:var(--cream);
-    outline:none;text-align:center;
+    width:100%;padding:14px 20px;font-family:'Playfair Display',serif;font-size:18px;
+    background:rgba(253,248,238,.08);border:1.5px solid rgba(212,168,67,.4);
+    border-radius:40px;color:var(--cream);outline:none;text-align:center;
     transition:border-color .3s,background .3s,box-shadow .3s;
   }
   .name-input::placeholder{color:rgba(253,248,238,.3);font-style:italic}
@@ -125,65 +116,50 @@
     padding:14px 42px;font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px;text-transform:uppercase;
     background:linear-gradient(135deg,var(--gold) 0%,#B8863A 100%);
     border:none;border-radius:40px;color:var(--deep);cursor:pointer;
-    transition:transform .2s,box-shadow .3s;
-    box-shadow:0 4px 20px rgba(212,168,67,.3);
+    transition:transform .2s,box-shadow .3s;box-shadow:0 4px 20px rgba(212,168,67,.3);
   }
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(212,168,67,.5)}
   .btn-primary:active{transform:scale(.97)}
 
-  /* PAGE 1 */
+  /* ── PAGE 1 ── */
   #page-1{background:radial-gradient(ellipse at 50% 20%,#2B1060 0%,var(--deep) 65%)}
   .greeting-card{
-    background:rgba(253,248,238,.05);
-    border:1px solid rgba(212,168,67,.22);
-    border-radius:24px;padding:34px 28px;
-    max-width:520px;width:100%;text-align:center;
-    position:relative;backdrop-filter:blur(10px);
-    animation:cardReveal .8s ease forwards;overflow:hidden;
+    background:rgba(253,248,238,.05);border:1px solid rgba(212,168,67,.22);
+    border-radius:24px;padding:34px 28px;max-width:520px;width:100%;text-align:center;
+    position:relative;backdrop-filter:blur(10px);animation:cardReveal .8s ease forwards;overflow:hidden;
   }
   @keyframes cardReveal{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-  .big-name{
-    font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,46px);font-style:italic;
-    color:var(--gold-light);margin:8px 0 4px;
-    animation:nameGlow 3s ease-in-out infinite;
-  }
+  .big-name{font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,46px);font-style:italic;color:var(--gold-light);margin:8px 0 4px;animation:nameGlow 3s ease-in-out infinite;}
   @keyframes nameGlow{0%,100%{text-shadow:0 0 20px rgba(212,168,67,.3)}50%{text-shadow:0 0 50px rgba(212,168,67,.7),0 0 80px rgba(212,168,67,.3)}}
   .eid-mubarak-text{font-family:'Cinzel',serif;font-size:clamp(22px,5vw,36px);letter-spacing:3px;color:var(--cream);margin:10px 0}
   .arabic-text{font-size:clamp(20px,4vw,28px);color:var(--gold);direction:rtl;margin:6px 0 12px;letter-spacing:2px}
   .greeting-body{font-size:clamp(14px,2.5vw,17px);line-height:1.85;color:rgba(253,248,238,.75);margin:14px 0;font-style:italic}
   .name-inline{color:var(--gold-light);font-style:normal;font-weight:600}
-
   .orn{position:absolute;width:55px;height:55px;opacity:.18;pointer-events:none}
-  .orn.tl{top:8px;left:8px}
-  .orn.tr{top:8px;right:8px;transform:scaleX(-1)}
-  .orn.bl{bottom:8px;left:8px;transform:scaleY(-1)}
-  .orn.br{bottom:8px;right:8px;transform:scale(-1)}
+  .orn.tl{top:8px;left:8px} .orn.tr{top:8px;right:8px;transform:scaleX(-1)}
+  .orn.bl{bottom:8px;left:8px;transform:scaleY(-1)} .orn.br{bottom:8px;right:8px;transform:scale(-1)}
 
-  /* PAGE 2 */
+  /* ── PAGE 2 ── */
   #page-2{background:radial-gradient(ellipse at 30% 50%,#0A3B2E 0%,var(--deep) 70%)}
   .blessings-container{
     max-width:600px;width:100%;text-align:center;
-    overflow-y:auto;max-height:100vh;padding:10px 4px 60px;
-    scrollbar-width:none;
+    overflow-y:auto;max-height:calc(100vh - 40px);padding:10px 4px 20px;
+    scrollbar-width:none;display:flex;flex-direction:column;align-items:center;
   }
   .blessings-container::-webkit-scrollbar{display:none}
   .section-headline{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,34px);margin-bottom:10px;color:var(--cream)}
   .dua-box{
     background:rgba(212,168,67,.06);border:1px solid rgba(212,168,67,.14);
     border-radius:16px;padding:14px 18px;margin:4px 0 12px;
-    font-style:italic;color:rgba(253,248,238,.7);font-size:clamp(13px,2vw,15px);line-height:1.75;
+    font-style:italic;color:rgba(253,248,238,.7);font-size:clamp(13px,2vw,15px);line-height:1.75;width:100%;
   }
-  .blessing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 14px;}
+  .blessing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0 14px;width:100%}
   @media(max-width:500px){.blessing-cards{grid-template-columns:1fr 1fr}}
-  .blessing-item{
-    background:rgba(29,125,107,.12);border:1px solid rgba(43,168,152,.2);
-    border-radius:16px;padding:14px 10px;
-    transition:transform .3s,border-color .3s,background .3s;cursor:default;
-  }
+  .blessing-item{background:rgba(29,125,107,.12);border:1px solid rgba(43,168,152,.2);border-radius:16px;padding:14px 10px;transition:transform .3s,border-color .3s,background .3s;cursor:default;}
   .blessing-item:hover{transform:translateY(-3px);border-color:rgba(43,168,152,.5);background:rgba(29,125,107,.26)}
-  .blessing-item.gold-variant{background:rgba(212,168,67,.08);border-color:rgba(212,168,67,.2);}
+  .blessing-item.gold-variant{background:rgba(212,168,67,.08);border-color:rgba(212,168,67,.2)}
   .blessing-item.gold-variant:hover{background:rgba(212,168,67,.18);border-color:rgba(212,168,67,.5)}
-  .blessing-item.rose-variant{background:rgba(192,74,107,.08);border-color:rgba(192,74,107,.2);}
+  .blessing-item.rose-variant{background:rgba(192,74,107,.08);border-color:rgba(192,74,107,.2)}
   .blessing-item.rose-variant:hover{background:rgba(192,74,107,.18);border-color:rgba(192,74,107,.5)}
   .blessing-icon{font-size:26px;margin-bottom:6px;display:block}
   .blessing-title{font-family:'Cinzel',serif;font-size:11px;color:var(--teal-light);letter-spacing:1px;margin-bottom:4px}
@@ -191,19 +167,53 @@
   .blessing-item.rose-variant .blessing-title{color:#E8829E}
   .blessing-desc{font-size:11px;color:rgba(253,248,238,.5);line-height:1.5}
 
-  /* PAGE 3 */
+  /* ── PAGE 3 — POEM (fully scrollable, button always reachable) ── */
   #page-3{background:radial-gradient(ellipse at 70% 40%,#3B1020 0%,var(--deep) 70%)}
-  .memory-container{max-width:540px;width:100%;text-align:center}
-  .lantern-row{display:flex;justify-content:center;gap:16px;margin-bottom:18px}
-  .lantern{font-size:36px;display:inline-block;animation:sway var(--sw,3s) ease-in-out infinite;transform-origin:top center;}
+
+  .memory-container{
+    max-width:520px; width:100%;
+    overflow-y:auto;
+    max-height:calc(100vh - 40px);
+    padding:16px 8px 24px;
+    scrollbar-width:none;
+    display:flex; flex-direction:column; align-items:center;
+    text-align:center;
+  }
+  .memory-container::-webkit-scrollbar{display:none}
+
+  .lantern-row{display:flex;justify-content:center;gap:16px;margin-bottom:12px;flex-shrink:0}
+  .lantern{font-size:30px;display:inline-block;animation:sway var(--sw,3s) ease-in-out infinite;transform-origin:top center;}
   @keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
-  .poem-block{background:rgba(192,74,107,.08);border:1px solid rgba(192,74,107,.2);border-radius:20px;padding:24px 20px;margin:14px 0;}
-  .poem-quote{font-family:'Playfair Display',serif;font-size:clamp(15px,3vw,19px);font-style:italic;color:var(--cream);line-height:1.85}
-  .poem-attr{font-size:12px;color:rgba(253,248,238,.38);margin-top:10px;letter-spacing:2px;font-family:'Cinzel',serif}
-  .heart-burst{font-size:24px;animation:pulse 2s ease-in-out infinite;display:inline-block;margin:0 4px}
+
+  .poem-block{
+    background:rgba(192,74,107,.08);border:1px solid rgba(192,74,107,.2);
+    border-radius:20px;padding:22px 20px;margin:10px 0;
+    width:100%;flex-shrink:0;
+  }
+
+  /* FIXED: no word-break on mobile */
+  .poem-quote{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(15px,3.5vw,19px);
+    font-style:italic;color:var(--cream);
+    line-height:2;
+    text-align:center;
+    word-break:keep-all;
+    overflow-wrap:normal;
+    hyphens:none;
+  }
+
+  .poem-attr{font-size:12px;color:rgba(253,248,238,.38);margin-top:12px;letter-spacing:2px;font-family:'Cinzel',serif}
+
+  .joy-line{
+    margin-top:10px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;
+    font-style:italic;font-size:14px;color:rgba(253,248,238,.6);
+  }
+  .heart-burst{font-size:20px;animation:pulse 2s ease-in-out infinite;display:inline-block;}
   @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
 
-  /* PAGE 4 */
+  /* ── PAGE 4 ── */
   #page-4{background:radial-gradient(ellipse at 50% 50%,#1A3060 0%,var(--deep) 70%)}
   .final-container{max-width:500px;width:100%;text-align:center}
   .big-moon{font-size:86px;display:block;margin:0 auto 14px;animation:moonFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 22px rgba(212,168,67,.45));}
@@ -218,13 +228,16 @@
   }
   .restart-btn:hover{background:rgba(43,168,152,.12);border-color:var(--teal-light)}
 
-  @media(max-height:640px){
-    .greeting-card{padding:16px 14px}
-    .blessing-cards{gap:8px}
-    .blessing-item{padding:10px 8px}
+  /* ── RESPONSIVE ── */
+  @media(max-height:700px){
+    .lantern{font-size:22px} .lantern-row{margin-bottom:6px}
+    .poem-block{padding:14px 14px;margin:6px 0}
     .crescent-icon{font-size:42px;margin-bottom:6px}
     .big-moon{font-size:60px}
-    .poem-block{padding:16px 12px}
+  }
+  @media(max-height:640px){
+    .greeting-card{padding:16px 14px}
+    .blessing-cards{gap:8px} .blessing-item{padding:10px 8px}
   }
   @media(max-width:420px){
     .greeting-card{padding:22px 16px}
@@ -246,7 +259,7 @@
   <p class="page-sub">for someone truly special</p>
   <div class="gold-divider"><div class="line"></div><span>✦</span><div class="line"></div></div>
   <div class="name-form">
-    <input class="name-input" id="nameInput" type="text" placeholder="Enter their name…" maxlength="30" autocomplete="off" />
+    <input class="name-input" id="nameInput" type="text" placeholder="Enter their name…" maxlength="30" autocomplete="off"/>
     <button class="btn-primary" onclick="startJourney()">Begin the Greeting ✦</button>
   </div>
 </div>
@@ -292,7 +305,7 @@
       <div class="blessing-item rose-variant"><span class="blessing-icon">📖</span><div class="blessing-title">Knowledge</div><div class="blessing-desc">Wisdom to walk the righteous path always</div></div>
       <div class="blessing-item gold-variant"><span class="blessing-icon">🕌</span><div class="blessing-title">Faith</div><div class="blessing-desc">Imaan that remains firm through every trial</div></div>
     </div>
-    <div class="dua-box" style="margin-top:4px;font-size:clamp(12px,1.8vw,14px)">
+    <div class="dua-box" style="font-size:clamp(12px,1.8vw,14px)">
       🤍 May <span id="n2e" style="color:var(--gold-light);font-style:normal">you</span> be shielded from all harm, gifted with sabr in hardship, and may every door of goodness be opened for you this Eid and beyond. Ameen.
     </div>
     <button class="btn-next" onclick="goTo(3)">A poem for <span id="n2d">you</span> →</button>
@@ -301,33 +314,24 @@
 
 <!-- ═══ PAGE 3 — POEM ═══ -->
 <div class="page" id="page-3">
-  <div class="memory-container">
+  <div class="memory-container" id="memoryScroll">
     <div class="lantern-row">
       <span class="lantern" style="--sw:2.8s">🏮</span>
       <span class="lantern" style="--sw:3.5s;animation-delay:-1s">🪔</span>
       <span class="lantern" style="--sw:2.4s;animation-delay:-.5s">🏮</span>
     </div>
     <p class="section-label">✦ Written in the Stars for <span id="n3a">you</span> ✦</p>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,32px);color:var(--rose);margin-bottom:14px">A Poem of Eid</h2>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,5vw,32px);color:var(--rose);margin-bottom:10px;flex-shrink:0">A Poem of Eid</h2>
     <div class="poem-block">
-      <p class="poem-quote">
-        <span id="n3b">Dear friend</span>, on this joyous day,<br>
-        May the crescent moon light your way.<br>
-        Through feasts and prayer and family near,<br>
-        May Eid bring you all you hold dear.<br><br>
-        The fragrance of attar fills the air,<br>
-        And in every heart a gentle prayer—<br>
-        That <span id="n3c" style="color:var(--rose)">you</span> shall know, this blessed dawn,<br>
-        How much you're loved, how you belong.
-      </p>
+      <p class="poem-quote" id="poemText"></p>
       <p class="poem-attr">— With love &amp; prayers ✦ Eid 1446</p>
     </div>
-    <p style="font-size:15px;margin-top:8px">
+    <div class="joy-line">
       <span class="heart-burst">❤️</span>
-      <span style="color:rgba(253,248,238,.6);font-style:italic;font-size:14px">May every moment of Eid bring <span id="n3d" style="color:var(--rose)">you</span> pure joy</span>
+      <span>May every moment of Eid bring <span id="n3d" style="color:var(--rose)">you</span> pure joy</span>
       <span class="heart-burst" style="animation-delay:-1s">❤️</span>
-    </p>
-    <button class="btn-next" onclick="goTo(4)">Final wishes for <span id="n3e">you</span> →</button>
+    </div>
+    <button class="btn-next" onclick="goTo(4)" style="margin-top:16px;margin-bottom:8px">Final wishes for <span id="n3e">you</span> →</button>
   </div>
 </div>
 
@@ -374,17 +378,39 @@
     pEl.appendChild(p);
   }
 
+  // Build poem via innerHTML — avoids any comma-prefix glitch from textContent
+  function buildPoem(n) {
+    return n + ', on this joyous day,<br>'
+      + 'May the crescent moon light your way.<br>'
+      + 'Through feasts and prayer and family near,<br>'
+      + 'May Eid bring you all you hold dear.<br><br>'
+      + 'The fragrance of attar fills the air,<br>'
+      + 'And in every heart a gentle prayer&mdash;<br>'
+      + 'That <span style="color:var(--rose)">' + n + '</span> shall know, this blessed dawn,<br>'
+      + 'How much you\'re loved, how you belong.';
+  }
+
   function setName(n) {
     name = n || 'Dear One';
+
+    // textContent for all plain text slots
     [
       ['n1', name], ['n1b', name], ['n1c', name],
       ['n2a', name], ['n2b', name], ['n2c', name], ['n2d', name], ['n2e', name],
-      ['n3a', name], ['n3b', name], ['n3c', name], ['n3d', name], ['n3e', name],
-      ['n4a', 'Eid Mubarak, ' + name + '!'], ['n4b', name],
+      ['n3a', name], ['n3d', name], ['n3e', name],
+      ['n4b', name],
     ].forEach(([id, val]) => {
       const el = document.getElementById(id);
       if (el) el.textContent = val;
     });
+
+    // n4a needs "Eid Mubarak, name!"
+    const n4a = document.getElementById('n4a');
+    if (n4a) n4a.textContent = 'Eid Mubarak, ' + name + '!';
+
+    // Poem uses innerHTML to embed coloured span and line breaks cleanly
+    const poemEl = document.getElementById('poemText');
+    if (poemEl) poemEl.innerHTML = buildPoem(name);
   }
 
   function startJourney() {
@@ -412,6 +438,14 @@
 
     const pct = cur === 0 ? 0 : Math.round((cur / (TOTAL - 1)) * 100);
     document.getElementById('progressBar').style.width = pct + '%';
+
+    // Always scroll poem page back to top
+    if (n === 3) {
+      setTimeout(() => {
+        const mc = document.getElementById('memoryScroll');
+        if (mc) mc.scrollTop = 0;
+      }, 50);
+    }
   }
 
   function restart() {
@@ -420,7 +454,6 @@
     document.getElementById('nameInput').focus();
   }
 
-  // Enter key on name input
   document.getElementById('nameInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') startJourney();
   });
